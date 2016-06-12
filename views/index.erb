@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Memo Cloud</title>
+        <link rel="stylesheet" href="/css/pure-min.css">
+        <link rel="stylesheet" href="/css/semantic.min.css">
+        <link rel="stylesheet" href="/css/card.min.css">
+        <link rel="stylesheet" href="/css/custom-menu.css">
+        <script src="/js/jquery-1.12.0.min.js"></script>
+        <script src="/js/semantic.min.js"></script>
+        <style>
+            .main {
+                padding: 2em;
+                color: black;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="custom-menu-wrapper">
+            <div class="pure-menu custom-menu custom-menu-top">
+                <a href="/" class="pure-menu-heading custom-menu-brand">Memo Cloud</a>
+                <a href="#" class="custom-menu-toggle" id="toggle"><s class="bar"></s><s class="bar"></s></a>
+            </div>
+            <div class="pure-menu pure-menu-horizontal pure-menu-scrollable custom-menu custom-menu-bottom custom-menu-tucked" id="tuckedMenu">
+                <div class="custom-menu-screen"></div>
+                <ul class="pure-menu-list">
+                    <!-- カテゴリメニューの記述はこのulタグ内に -->
+                    <!-- 下のliタグを参考に各カテゴリ用のliを追加しよう -->
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">カテゴリ名1</a></li>
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">カテゴリ名2</a></li>
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">カテゴリ名3</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="main">
+            <!-- フォームに関する記述はここに -->
+            <form class="pure-form" action="#" method="#">
+                <fieldset>
+                    <legend>新しいメモを追加</legend>
+
+                    <input type="text" name="" placeholder="タイトル">
+                    <input type="text" name="" placeholder="内容">
+
+                    <label for="categories">カテゴリ</label>
+                    <select id="categories" name="">
+                        <!-- カテゴリに関する記述はここに -->
+                        <option value="">カテゴリ1</option>
+                        <option value="">カテゴリ2</option>
+                        <option value="">カテゴリ3</option>
+                    </select>
+
+                    <button type="submit" class="pure-button pure-button-primary">追加</button>
+                </fieldset>
+            </form>
+
+            <div class="ui cards">
+                <!-- メモの表示関連はここに記述 -->
+                <!-- 下記のcardクラスのdivタグで囲まれた範囲が一つのカードに相当する -->
+                <div class="card">
+                    <div class="content">
+                        <div class="header">
+                            <!-- メモのタイトルはここに -->
+                            サンプルテキスト
+                        </div>
+                        <div class="meta">
+                            <!-- メモのカテゴリはここに -->
+                            カテゴリ名1
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="description">
+                            <!-- メモの内容はここに -->
+                            これはテストです．
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <div class="ui two buttons">
+                            <!-- メモの編集・削除に関しては下記を編集 -->
+                            <a class="ui basic blue button" href="">Edit</a>
+                            <a class="ui basic red button" href="">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+(function(window, document) {
+    document.getElementById('toggle').addEventListener('click', function(e) {
+        document.getElementById('tuckedMenu').classList.toggle('custom-menu-tucked');
+        document.getElementById('toggle').classList.toggle('x');
+    });
+})(this, this.document);
+        </script>
+    </body>
+</html>
