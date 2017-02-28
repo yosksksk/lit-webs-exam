@@ -29,28 +29,28 @@
                 <ul class="pure-menu-list">
                     <!-- カテゴリメニューの記述はこのulタグ内に -->
                     <!-- 下のliタグを参考に各カテゴリ用のliを追加しよう -->
-                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">カテゴリ名1</a></li>
-                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">カテゴリ名2</a></li>
-                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">カテゴリ名3</a></li>
+                    <% @categories.each do |c| %>
+                        <li class="pure-menu-item"><a href="/categories/<%= c.id %>" class="pure-menu-link"><%= c.name %></a></li>
+                    <% end %>
                 </ul>
             </div>
         </div>
 
         <div class="main">
             <!-- フォームに関する記述はここに -->
-            <form class="pure-form" action="#" method="#">
+            <form class="pure-form" action="/new" method="POST">
                 <fieldset>
                     <legend>新しいメモを追加</legend>
 
-                    <input type="text" name="" placeholder="タイトル">
-                    <input type="text" name="" placeholder="内容">
+                    <input type="text" name="title" placeholder="タイトル">
+                    <input type="text" name="body" placeholder="内容">
 
                     <label for="categories">カテゴリ</label>
-                    <select id="categories" name="">
+                    <select id="categories" name="category">
                         <!-- カテゴリに関する記述はここに -->
-                        <option value="">カテゴリ1</option>
-                        <option value="">カテゴリ2</option>
-                        <option value="">カテゴリ3</option>
+                        <% @categories.each do |c| %>
+                            <option value="<%= c.id %>"><%= c.name %></option>
+                        <% end %>
                     </select>
 
                     <button type="submit" class="pure-button pure-button-primary">追加</button>
@@ -60,31 +60,33 @@
             <div class="ui cards">
                 <!-- メモの表示関連はここに記述 -->
                 <!-- 下記のcardクラスのdivタグで囲まれた範囲が一つのカードに相当する -->
-                <div class="card">
-                    <div class="content">
-                        <div class="header">
-                            <!-- メモのタイトルはここに -->
-                            サンプルテキスト
+                <% @memos.each do |m| %>
+                    <div class="card">
+                        <div class="content">
+                            <div class="header">
+                                <!-- メモのタイトルはここに -->
+                                <%= m.title %>
+                            </div>
+                            <div class="meta">
+                                <!-- メモのカテゴリはここに -->
+                                <%= m.category.name %>
+                            </div>
                         </div>
-                        <div class="meta">
-                            <!-- メモのカテゴリはここに -->
-                            カテゴリ名1
+                        <div class="content">
+                            <div class="description">
+                                <!-- メモの内容はここに -->
+                                <%= m.body %>
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            <div class="ui two buttons">
+                                <!-- メモの編集・削除に関しては下記を編集 -->
+                                <a class="ui basic blue button" href="/memos/<%= m.id %>/edit">Edit</a>
+                                <a class="ui basic red button" href="/memos/<%= m.id %>/delete">Delete</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="content">
-                        <div class="description">
-                            <!-- メモの内容はここに -->
-                            これはテストです．
-                        </div>
-                    </div>
-                    <div class="extra content">
-                        <div class="ui two buttons">
-                            <!-- メモの編集・削除に関しては下記を編集 -->
-                            <a class="ui basic blue button" href="">Edit</a>
-                            <a class="ui basic red button" href="">Delete</a>
-                        </div>
-                    </div>
-                </div>
+                <% end %>
             </div>
         </div>
 
